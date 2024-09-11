@@ -109,7 +109,7 @@ namespace AgendaPautasso
                 // Consulta SQL para buscar por categoría
                 comando.CommandText = "SELECT * FROM AGENDA WHERE Categoria = @categoria";
                 comando.Parameters.AddWithValue("@categoria", categoria);
-
+                //recordar el uso de parametros con @ sirven para insertar ese argumento literalmente en la base 
                 DataTable tabla = new DataTable();
                 adaptador = new OleDbDataAdapter(comando);
                 adaptador.Fill(tabla);
@@ -136,8 +136,9 @@ namespace AgendaPautasso
 
                 // Consulta SQL para buscar por nombre, teléfono o correo
                 comando.CommandText = "SELECT * FROM AGENDA WHERE Nombre LIKE @texto OR Telefono LIKE @texto OR Correo LIKE @texto";
-                comando.Parameters.AddWithValue("@texto", "%" + texto + "%"); // Usar LIKE para búsquedas parciales
-
+                comando.Parameters.AddWithValue("@texto", "%" + texto + "%"); // Usar LIKE para buscar coincidencias de cadenas de texto 
+                //recordar uso de % entre cadenas de texto para busqueda parcial ej : 
+                //===> se busca %matias%, osea se busca matias dentro de la base 
                 DataTable tabla = new DataTable();
                 adaptador = new OleDbDataAdapter(comando);
                 adaptador.Fill(tabla);
@@ -166,7 +167,7 @@ namespace AgendaPautasso
                 comando.CommandText = "SELECT * FROM AGENDA WHERE Categoria = @categoria AND (Nombre LIKE @texto OR Telefono LIKE @texto OR Correo LIKE @texto)";
                 comando.Parameters.AddWithValue("@categoria", categoria);
                 comando.Parameters.AddWithValue("@texto", "%" + texto + "%"); // Usar LIKE para búsquedas parciales
-
+                //recordar uso % EJ : buscar matias ===> %matias% 
                 DataTable tabla = new DataTable();
                 adaptador = new OleDbDataAdapter(comando);
                 adaptador.Fill(tabla);
