@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -53,10 +53,46 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAgregarContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAgregarContacto.Designer.cs">
+      <DependentUpon>frmAgregarContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditarContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditarContacto.Designer.cs">
+      <DependentUpon>frmEditarContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEliminar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEliminar.Designer.cs">
+      <DependentUpon>frmEliminar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExportacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExportacion.Designer.cs">
+      <DependentUpon>frmExportacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAgregarContacto.resx">
+      <DependentUpon>frmAgregarContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditarContacto.resx">
+      <DependentUpon>frmEditarContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEliminar.resx">
+      <DependentUpon>frmEliminar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExportacion.resx">
+      <DependentUpon>frmExportacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
