@@ -28,11 +28,12 @@ namespace AgendaPautasso
             cmbCategoria.Items.Add("Familia");
             cmbCategoria.Items.Add("Trabajo");
             cmbCategoria.Items.Add("Todos");
-            
-            
+            cmbCategoria.SelectedIndex = 3;
+
+
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)  
         {
             frmAgregarContacto frmAgregarContacto = new frmAgregarContacto();
 
@@ -83,10 +84,33 @@ namespace AgendaPautasso
 
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbCategoria.Text=="Todos") 
+            if (cmbCategoria.Text == "Todos")
             {
                 txtBuscar.Enabled = false;  ///
             }
+            else 
+            {
+                txtBuscar.Enabled = true;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e) //btnEliminar
+        {
+            frmEliminar frmEliminar = new frmEliminar();
+            frmEliminar.ShowDialog();   
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            frmExportacion frmExportacion = new frmExportacion();   
+            frmExportacion.ShowDialog();
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            frmEditarContacto frmEditar = new frmEditarContacto();  
+            frmEditar.ShowDialog(); 
         }
     }
 }

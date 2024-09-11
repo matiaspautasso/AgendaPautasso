@@ -62,6 +62,7 @@
             this.btnCancelar.TabIndex = 22;
             this.btnCancelar.Text = "cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -184,6 +185,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmEditarContacto";
             this.Text = "frmEditarContacto";
+            this.Load += new System.EventHandler(this.frmEditarContacto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
