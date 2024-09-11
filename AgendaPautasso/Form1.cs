@@ -29,7 +29,8 @@ namespace AgendaPautasso
             cmbCategoria.Items.Add("Trabajo");
             cmbCategoria.Items.Add("Todos");
             cmbCategoria.SelectedIndex = 3;
-
+            //recordar cambiar icon de cada formulario
+            // recordar cambiar icono de ejecutable
 
         }
 
