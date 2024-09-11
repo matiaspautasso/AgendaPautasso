@@ -42,7 +42,7 @@ namespace AgendaPautasso
 
             return result;
         }
-        public void Agregar(string nombre, string apellido, int telefono, string correo, string categoria) 
+        public void Agregar(string nombre, string apellido, int telefono, string correo, string categoria)
         {
             try
             {
@@ -53,26 +53,26 @@ namespace AgendaPautasso
                 comando.CommandText = "INSERT INTO AGENDA (Nombre, Apellido, Telefono, Correo, Categoria) " +
                              "VALUES (@nombre, @apellido, @telefono, @correo, @categoria)";  //recordar estos son los valores que le paso
                                                                                              //a la base de datos por eso se escriben con @
-               
+
                 comando.Parameters.AddWithValue("@nombre", nombre);
                 comando.Parameters.AddWithValue("@apellido", apellido);
                 comando.Parameters.AddWithValue("@telefono", telefono);
                 comando.Parameters.AddWithValue("@correo", correo);
                 comando.Parameters.AddWithValue("@categoria", categoria);
-                
+
                 conexion.Open();
                 comando.ExecuteNonQuery();
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally 
+            finally
             {
                 conexion.Close();
             }
-        
+
         }
         public void MostrarGrilla(DataGridView grilla)
         {
@@ -97,7 +97,91 @@ namespace AgendaPautasso
                 conexion.Close();
             }
         }
+        public void BuscarPorCategoria(string categoria, DataGridView dgv)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
 
+                // Consulta SQL para buscar por categoría
+                comando.CommandText = "SELECT * FROM AGENDA WHERE Categoria = @categoria";
+                comando.Parameters.AddWithValue("@categoria", categoria);
 
+                DataTable tabla = new DataTable();
+                adaptador = new OleDbDataAdapter(comando);
+                adaptador.Fill(tabla);
+
+                dgv.DataSource = tabla; // Actualizar el DataGridView con los resultados
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public void BuscarPorTexto(string texto, DataGridView dgv)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+
+                // Consulta SQL para buscar por nombre, teléfono o correo
+                comando.CommandText = "SELECT * FROM AGENDA WHERE Nombre LIKE @texto OR Telefono LIKE @texto OR Correo LIKE @texto";
+                comando.Parameters.AddWithValue("@texto", "%" + texto + "%"); // Usar LIKE para búsquedas parciales
+
+                DataTable tabla = new DataTable();
+                adaptador = new OleDbDataAdapter(comando);
+                adaptador.Fill(tabla);
+
+                dgv.DataSource = tabla; // Actualizar el DataGridView con los resultados
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public void BuscarPorCategoriaYTexto(string categoria, string texto, DataGridView dgv)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+
+                // Consulta SQL para buscar por categoría y también nombre, teléfono o correo
+                comando.CommandText = "SELECT * FROM AGENDA WHERE Categoria = @categoria AND (Nombre LIKE @texto OR Telefono LIKE @texto OR Correo LIKE @texto)";
+                comando.Parameters.AddWithValue("@categoria", categoria);
+                comando.Parameters.AddWithValue("@texto", "%" + texto + "%"); // Usar LIKE para búsquedas parciales
+
+                DataTable tabla = new DataTable();
+                adaptador = new OleDbDataAdapter(comando);
+                adaptador.Fill(tabla);
+
+                dgv.DataSource = tabla; // Actualizar el DataGridView con los resultados
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
     }
 }

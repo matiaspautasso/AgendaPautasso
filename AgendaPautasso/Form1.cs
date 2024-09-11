@@ -27,6 +27,7 @@ namespace AgendaPautasso
             cmbCategoria.Items.Add("Amigos");
             cmbCategoria.Items.Add("Familia");
             cmbCategoria.Items.Add("Trabajo");
+            cmbCategoria.Items.Add("Todos");
             
             
         }
@@ -41,6 +42,50 @@ namespace AgendaPautasso
             {
                 // Actualizar la grilla si el contacto fue agregado correctamente
                 conexion.MostrarGrilla(DgvAgenda); 
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string categoriaSeleccionada = cmbCategoria.Text;
+            
+            string textoBusqueda = txtBuscar.Text;
+
+
+            // Verificar qué tipo de búsqueda se debe hacer
+            if (!string.IsNullOrEmpty(categoriaSeleccionada) && !string.IsNullOrEmpty(textoBusqueda))
+            {
+                // Escenario 3: Buscar por categoría y por texto (nombre, teléfono o correo)
+                conexion.BuscarPorCategoriaYTexto(categoriaSeleccionada, textoBusqueda,DgvAgenda);
+            }
+            else if (!string.IsNullOrEmpty(categoriaSeleccionada))
+            {
+                // Escenario 1: Solo buscar por categoría
+                conexion.BuscarPorCategoria(categoriaSeleccionada, DgvAgenda);
+            }
+            else if (!string.IsNullOrEmpty(textoBusqueda))
+            {
+                // Escenario 2: Solo buscar por texto (nombre, teléfono o correo)
+                conexion.BuscarPorTexto(textoBusqueda,DgvAgenda);
+            }
+            else
+            {
+                // Si no hay criterios de búsqueda, puedes mostrar un mensaje o volver a mostrar todos los contactos
+                MessageBox.Show("Por favor, seleccione una categoría o ingrese un término de búsqueda.");
+            }
+            if(cmbCategoria.Text=="Todos")
+            {
+               
+                conexion.MostrarGrilla(DgvAgenda);
+            }
+
+        }
+
+        private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCategoria.Text=="Todos") 
+            {
+                txtBuscar.Enabled = false;
             }
         }
     }
