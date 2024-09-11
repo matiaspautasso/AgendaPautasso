@@ -85,7 +85,7 @@ namespace AgendaPautasso
         {
             if (cmbCategoria.Text=="Todos") 
             {
-                txtBuscar.Enabled = false;
+                txtBuscar.Enabled = false;  ///
             }
         }
     }
