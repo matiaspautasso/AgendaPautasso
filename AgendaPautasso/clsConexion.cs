@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
 using System.Collections;
+using System.Data.Common;
 
 namespace AgendaPautasso
 {
@@ -72,6 +73,29 @@ namespace AgendaPautasso
                 conexion.Close();
             }
         
+        }
+        public void MostrarGrilla(DataGridView grilla)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+                comando.CommandText = "SELECT * FROM AGENDA";
+                DataTable TABLA = new DataTable();
+                adaptador = new OleDbDataAdapter(comando);
+                adaptador.Fill(TABLA);
+                grilla.DataSource = TABLA;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
         }
 
 

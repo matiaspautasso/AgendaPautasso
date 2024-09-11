@@ -22,6 +22,7 @@ namespace AgendaPautasso
         {
             conexion = new clsConexion();
             //conexion.VerificarConexion();
+            conexion.MostrarGrilla(DgvAgenda);
             cmbCategoria.Items.Clear();
             cmbCategoria.Items.Add("Amigos");
             cmbCategoria.Items.Add("Familia");
@@ -33,7 +34,14 @@ namespace AgendaPautasso
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAgregarContacto frmAgregarContacto = new frmAgregarContacto();
-            frmAgregarContacto.ShowDialog();    
+
+            // ===> dialogResult significa que si el usuario al estar en el otro formulario, le dio a ok es true, si cierra el frm abierto
+            // seria DialogResult.Cancel 
+            if (frmAgregarContacto.ShowDialog() == DialogResult.OK)  
+            {
+                // Actualizar la grilla si el contacto fue agregado correctamente
+                conexion.MostrarGrilla(DgvAgenda); 
+            }
         }
     }
 }
