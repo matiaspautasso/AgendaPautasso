@@ -8,6 +8,8 @@ using System.Data;
 using System.Windows.Forms;
 using System.Collections;
 using System.Data.Common;
+using System.IO;
+
 
 namespace AgendaPautasso
 {
@@ -155,6 +157,79 @@ namespace AgendaPautasso
                 conexion.Close();
             }
         }
+
+        public void Exportar(string categoria, string tipoArchivo)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+
+                string consultaSql = "";
+                if (categoria == "Todos")  //trae toda la tabla sin filtro 
+                {
+                    consultaSql = "SELECT * FROM AGENDA";
+                }
+                else
+                {
+                    consultaSql = "SELECT * FROM AGENDA WHERE Categoria = @categoria"; //trae en base a la categ selecc
+                    comando.Parameters.AddWithValue("@categoria", categoria);
+                }
+
+                comando.CommandText = consultaSql;
+                DataTable tabla = new DataTable();
+                adaptador = new OleDbDataAdapter(comando);
+                adaptador.Fill(tabla);
+
+                if (tipoArchivo == "Csv")  
+                {
+                    StreamWriter writer = new StreamWriter("AGENDA.csv", false, Encoding.UTF8);
+                    writer.WriteLine("IdContacto;Nombre;Apellido;Telefono;Correo;Categoria");
+                    foreach (DataRow row in tabla.Rows)
+                    {
+                        writer.Write(row["IdContacto"].ToString());
+                        writer.Write(";");
+                        writer.Write(row["Nombre"].ToString());
+                        writer.Write(";");
+                        writer.Write(row["Apellido"].ToString());
+                        writer.Write(";");
+                        writer.WriteLine(row["Telefono"].ToString());
+                        writer.Write(";");
+                        writer.WriteLine(row["Correo"].ToString());
+                        writer.Write(";");
+                        writer.WriteLine(row["Categoria"].ToString());
+                    }
+                    writer.Close();
+                }
+                else if (tipoArchivo == "Excel")
+                {
+                    StreamWriter writer = new StreamWriter("AGENDA.xls", false, Encoding.UTF8);
+                    writer.WriteLine("Categoria\tNombre\tApellido\tTelefono\tCorreo");
+                    foreach (DataRow row in tabla.Rows)
+                    {
+                        writer.Write(row["Categoria"].ToString() + "\t"); // /t es para tabular en excel dejar en claro que es una columna 
+                        writer.Write(row["Nombre"].ToString() + "\t");
+                        writer.Write(row["Apellido"].ToString() + "\t");
+                        writer.Write(row["Telefono"].ToString() + "\t");
+                        writer.WriteLine(row["Correo"].ToString());
+                    }
+                     writer.Close ();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
+
         public void BuscarPorTexto(string texto, DataGridView dgv)
         {
             try
