@@ -98,7 +98,14 @@ namespace AgendaPautasso
         private void button2_Click(object sender, EventArgs e) //btnEliminar
         {
             frmEliminar frmEliminar = new frmEliminar();
-            frmEliminar.ShowDialog();   
+
+            // ===> dialogResult significa que si el usuario al estar en el otro formulario, le dio a ok es true, si cierra el frm abierto
+            // seria DialogResult.Cancel 
+            if (frmEliminar.ShowDialog() == DialogResult.OK)
+            {
+                // Actualizar la grilla si el contacto fue agregado correctamente
+                conexion.MostrarGrilla(DgvAgenda);
+            }
         }
 
         private void btnExportar_Click(object sender, EventArgs e)

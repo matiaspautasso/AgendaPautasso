@@ -35,7 +35,7 @@ namespace AgendaPautasso
                 string nombre = txtNombre.Text;
                 string apellido = txtApellido.Text;
                 string tel = txtTelefono.Text;
-                string mail = txtCorreo.Text;
+                string mail = txtCorreo.Text;    
                 string categoria = cboCategoria.Text;
 
                 // Agregar el contacto a la base de datos

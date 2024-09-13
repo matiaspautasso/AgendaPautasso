@@ -74,6 +74,36 @@ namespace AgendaPautasso
             }
 
         }
+        public void Eliminar(string nombre, string apellido)
+        {
+            try
+            {
+                conexion = new OleDbConnection(cadena);  // Inicializa la conexión
+                comando = new OleDbCommand();  // Crea el comando
+                comando.Connection = conexion;  // Asocia el comando con la conexión
+                comando.CommandType = CommandType.Text;  // Tipo de comando: texto (consulta SQL)
+
+                // Consulta SQL adaptada para eliminar según Nombre y Apellido
+                comando.CommandText = "DELETE FROM AGENDA WHERE Nombre = @Nombre AND Apellido = @Apellido";
+
+                // Asocia los parámetros para evitar inyecciones SQL y errores de tipo
+                comando.Parameters.AddWithValue("@Nombre", nombre);
+                comando.Parameters.AddWithValue("@Apellido", apellido);
+
+                conexion.Open();  // Abre la conexión
+                comando.ExecuteNonQuery();  // Ejecuta la consulta de eliminación
+            }
+            catch (Exception ex)
+            {
+                // Muestra un mensaje en caso de error
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Asegura que la conexión se cierre siempre, haya error o no
+                conexion.Close();
+            }
+        }
         public void MostrarGrilla(DataGridView grilla)
         {
             try
