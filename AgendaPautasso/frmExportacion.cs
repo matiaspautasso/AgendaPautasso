@@ -44,6 +44,8 @@ namespace AgendaPautasso
 
         private void frmExportacion_Load(object sender, EventArgs e)
         {
+
+            //configurar boton exportar el excel no anda bien 
             cboExportar.Items.Clear();
             cboExportar.Items.Clear();
             cboExportar.Items.Add("Amigos");
