@@ -34,7 +34,7 @@ namespace AgendaPautasso
                 // Obtener los datos del formulario
                 string nombre = txtNombre.Text;
                 string apellido = txtApellido.Text;
-                int tel = int.Parse(txtTelefono.Text);
+                string tel = txtTelefono.Text;
                 string mail = txtCorreo.Text;
                 string categoria = cboCategoria.Text;
 

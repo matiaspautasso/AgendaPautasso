@@ -42,7 +42,7 @@ namespace AgendaPautasso
 
             return result;
         }
-        public void Agregar(string nombre, string apellido, int telefono, string correo, string categoria)
+        public void Agregar(string nombre, string apellido, string telefono, string correo, string categoria)
         {
             try
             {
