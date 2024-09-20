@@ -22,7 +22,8 @@ namespace AgendaPautasso
         string cadena;
         public clsConexion()
         {
-            cadena = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=./BdAgenda.accdb";
+             cadena = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Alumno\Source\Repos\Lab3Pr2Pautasso\AgendaPautasso\BdAgenda\BdAgenda.accdb;";
+
             //recordar esta conexion ==> cadena = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=./Usuarios.mdb;";
         }
         public bool VerificarConexion()
