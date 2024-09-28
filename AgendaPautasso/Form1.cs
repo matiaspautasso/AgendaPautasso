@@ -21,7 +21,7 @@ namespace AgendaPautasso
         private void Form1_Load(object sender, EventArgs e)
         {
             conexion = new clsConexion();
-            //conexion.VerificarConexion();
+            conexion.VerificarConexion();
             conexion.MostrarGrilla(DgvAgenda);
             cmbCategoria.Items.Clear();
             cmbCategoria.Items.Add("Amigos");

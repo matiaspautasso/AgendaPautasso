@@ -44,9 +44,9 @@ namespace AgendaPautasso
                 TvMostrar.Nodes.Add(nodo);
             }
         }
-        private void treeViewCategorias_AfterSelect(object sender, TreeViewEventArgs e)
+        private void treeViewCategorias_AfterSelect(object sender, TreeViewEventArgs e)   //este evento traslada los datos que el usuario clickeo a las cajas de texto
         {
-            // Verificar si el nodo seleccionado es un nodo hijo (contacto)
+            // Verificar si el nodo seleccionado es un nodo hijo 
             if (e.Node.Parent != null)
             {
                 // Obtener el texto del nodo (formato: "Nombre Apellido - Telefono - Correo")
@@ -60,7 +60,7 @@ namespace AgendaPautasso
                     string[] nombreApellido = datosContacto[0].Trim().Split(' ');
                     if (nombreApellido.Length >= 2)
                     {
-                        txtNombre.Text = nombreApellido[0];
+                        txtNombre.Text = nombreApellido[0];   //==> aca traslada los campos seleccionados a los componentes 
                         txtApellido.Text = nombreApellido[1];
                     }
 
