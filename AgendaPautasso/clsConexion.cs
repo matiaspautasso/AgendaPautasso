@@ -19,7 +19,7 @@ namespace AgendaPautasso
         OleDbConnection conexion;
         OleDbDataAdapter adaptador;
 
-        string cadena;
+        public static string cadena; //para poder llamarla desde el otro form
         public clsConexion()
         {
              cadena = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Alumno\Source\Repos\Lab3Pr2Pautasso\AgendaPautasso\BdAgenda\BdAgenda.accdb;";
@@ -130,6 +130,90 @@ namespace AgendaPautasso
                 conexion.Close();
             }
         }
+        public void MostrarTreeView(TreeView treeViewCategorias)
+        {
+            try
+            {
+                // Limpiar el TreeView antes de agregar nuevos nodos
+                treeViewCategorias.Nodes.Clear();
+
+                // Usar la cadena de conexión ya configurada
+                conexion = new OleDbConnection(cadena);
+                comando = new OleDbCommand();
+                comando.Connection = conexion;
+                comando.CommandType = CommandType.Text;
+
+                // Consulta SQL para obtener todos los contactos
+                comando.CommandText = "SELECT Nombre, Apellido, Telefono, Correo, Categoria FROM AGENDA";
+
+                // Abrir la conexión
+                conexion.Open();
+
+                // Crear un DataTable para almacenar los datos
+                DataTable tabla = new DataTable();
+
+                // Llenar el DataTable con los datos de la tabla AGENDA
+                adaptador = new OleDbDataAdapter(comando);
+                adaptador.Fill(tabla);
+
+                // Crear un diccionario para agrupar los contactos por categoría
+                Dictionary<string, List<string>> contactosPorCategoria = new Dictionary<string, List<string>>();
+
+                // Iterar sobre las filas de la tabla para agrupar por categoría
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    // Obtener los valores de las columnas
+                    string nombre = fila["Nombre"].ToString();
+                    string apellido = fila["Apellido"].ToString();
+                    string telefono = fila["Telefono"].ToString();
+                    string correo = fila["Correo"].ToString();
+                    string categoria = fila["Categoria"].ToString();
+
+                    // Crear una cadena con los detalles del contacto
+                    string contacto = $"{nombre} {apellido} - {telefono} - {correo}";
+
+                    // Si la categoría no existe en el diccionario, añadirla
+                    if (!contactosPorCategoria.ContainsKey(categoria))
+                    {
+                        contactosPorCategoria[categoria] = new List<string>();
+                    }
+
+                    // Agregar el contacto a la lista correspondiente a la categoría
+                    contactosPorCategoria[categoria].Add(contacto);
+                }
+
+                // Cargar las categorías y contactos en el TreeView
+                foreach (var categoria in contactosPorCategoria)
+                {
+                    // Crear un nodo para la categoría (nodo padre)
+                    TreeNode nodoCategoria = new TreeNode(categoria.Key);
+
+                    // Agregar los contactos como nodos hijos de la categoría
+                    foreach (var contacto in categoria.Value)
+                    {
+                        TreeNode nodoContacto = new TreeNode(contacto);
+                        nodoCategoria.Nodes.Add(nodoContacto);
+                    }
+
+                    // Agregar el nodo de la categoría al TreeView
+                    treeViewCategorias.Nodes.Add(nodoCategoria);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Mostrar un mensaje en caso de error
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Asegurarse de cerrar la conexión
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+        }
+
         public void BuscarPorCategoria(string categoria, DataGridView dgv)
         {
             try
