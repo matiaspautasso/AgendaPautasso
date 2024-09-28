@@ -91,6 +91,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox1.Controls.Add(this.btnAgregar);
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.btnExportar);
@@ -105,6 +106,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Controls.Add(this.txtBuscar);

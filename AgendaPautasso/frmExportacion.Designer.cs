@@ -64,18 +64,18 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportar.Location = new System.Drawing.Point(25, 418);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(148, 50);
             this.btnExportar.TabIndex = 2;
-            this.btnExportar.Text = "exportar";
+            this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(198, 418);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(166, 50);
@@ -87,10 +87,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(105, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 33);
+            this.label1.Size = new System.Drawing.Size(175, 39);
             this.label1.TabIndex = 4;
             this.label1.Text = "exportar!!!";
             // 
@@ -98,6 +98,7 @@
             // 
             this.groupBox1.Controls.Add(this.rdbExcel);
             this.groupBox1.Controls.Add(this.rdbCsv);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(51, 186);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(313, 166);
@@ -107,16 +108,18 @@
             // 
             // cboExportar
             // 
+            this.cboExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboExportar.FormattingEnabled = true;
             this.cboExportar.Location = new System.Drawing.Point(51, 107);
             this.cboExportar.Name = "cboExportar";
-            this.cboExportar.Size = new System.Drawing.Size(205, 21);
+            this.cboExportar.Size = new System.Drawing.Size(205, 41);
             this.cboExportar.TabIndex = 6;
             // 
             // frmExportacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(402, 490);
             this.Controls.Add(this.cboExportar);
             this.Controls.Add(this.groupBox1);
